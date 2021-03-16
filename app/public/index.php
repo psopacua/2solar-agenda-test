@@ -4,14 +4,20 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Pre configurations.
 date_default_timezone_set("Europe/Helsinki");
 
-$date = ($_GET['date'] ?? date('d-m-Y')) . ' 00:00:00';
+$dbHost     = 'HOSTNAME';
+$dbSchema   = 'SCHEMA';
+$dbUser     = 'USERNAME';
+$dbPassword = 'PASSWORD';
+
+$date       = ($_GET['date'] ?? date('d-m-Y')) . ' 00:00:00';
 
 // Setup Database Connection
 try {
 	$database = new PDO(
-		'mysql:host=mysql_mysql_1;dbname=2solar',
-		'root',
-		'krijgjeniet');
+		'mysql:host='.$dbHost.';dbname='.$dbSchema,
+		$dbUser,
+		$dbPassword
+	);
 } catch(Exception $e) {
 	exit('Something went wrong while establishing a connection with the database!<br/> Error: '.$e->getMessage());
 }
@@ -22,8 +28,8 @@ $events = $eventRepository->findByDate($date);
 
 // Generate the available spots.
 $agendaHelper = new SOPADevelopment\TwoSolar\Helpers\AgendaHelper;
-$eventsAll = $agendaHelper->generateWithAvailableSpots($events);
-$eventsJSON = $agendaHelper->generateJSON($eventsAll);
+$eventsAll 	  = $agendaHelper->generateWithAvailableSpots($events);
+$eventsJSON	  = $agendaHelper->generateJSON($eventsAll);
 ?>
 <!DOCTYPE html>
 <html>
