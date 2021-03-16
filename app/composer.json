@@ -1,0 +1,24 @@
+{
+    "name": "SOPADevelopment/2solar-agenda-test",
+    "type": "library",
+    "description": "Test assignment for 2Solar Software",
+    "keywords": ["2solar","test","scheduler","agenda"],
+    "homepage": "https://yourcompany.com",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SOPADevelopment\\TwoSolar\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pascal Sopacua",
+            "email": "pascal@sopahosting.nl",
+            "homepage": "http://sopahosting.nl",
+            "role": "Developer"
+        }
+    ]
+}
